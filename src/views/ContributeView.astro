@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config.ts';
+import { useT, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useT(lang);
+
+const formUrl = `${SITE.repo}/issues/new?template=${t.templates.newCode}`;
+const contactUrl = SITE.contactEmail ? `mailto:${SITE.contactEmail}` : `${SITE.repo}/issues/new?template=${t.templates.podcaster}`;
+
+---
+
+<Base lang={lang} title={t.contribute.title} description={t.contribute.description}>
+  <div class="container page-head">
+    <h1>{t.contribute.title}</h1>
+    <p class="lead">{t.contribute.lead}</p>
+  </div>
+
+  <section class="container section ways">
+    <div class="card panel way">
+      <span class="step" aria-hidden="true">1</span>
+      <h2>{t.contribute.formTitle}</h2>
+      <p class="muted">{t.contribute.formText}</p>
+      <a class="btn btn-primary" href={formUrl} rel="noopener" target="_blank">{t.contribute.formButton}</a>
+    </div>
+
+    <div class="card panel way">
+      <span class="step" aria-hidden="true">2</span>
+      <h2>{t.contribute.prTitle}</h2>
+      <p class="muted">{t.contribute.prText}</p>
+      <pre><code>{t.contribute.example}</code></pre>
+      <a href={`${SITE.repo}/blob/main/CONTRIBUTING.md`} rel="noopener" target="_blank">{t.contribute.prLink}</a>
+    </div>
+  </section>
+
+  <section class="container section prose">
+    <h2>{t.contribute.rulesTitle}</h2>
+    <ul>
+      {t.contribute.rules.map((rule) => <li>{rule}</li>)}
+    </ul>
+
+    <h2>{t.contribute.podcasterTitle}</h2>
+    <p>{t.contribute.podcasterText}</p>
+    <p><a class="btn" href={contactUrl} rel="noopener">{t.contribute.podcasterButton}</a></p>
+  </section>
+</Base>
+
+<style>
+  .ways {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+    align-items: start;
+  }
+
+  .way {
+    display: grid;
+    gap: 12px;
+    justify-items: start;
+  }
+
+  .step {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font: 750 1rem var(--font-display);
+  }
+
+  pre {
+    width: 100%;
+    margin: 0;
+    padding: 14px 16px;
+    overflow-x: auto;
+    border-radius: var(--radius-sm);
+    background: var(--ticket);
+    border: 1px dashed var(--ticket-line);
+    font: 0.8rem/1.6 var(--font-mono);
+  }
+</style>

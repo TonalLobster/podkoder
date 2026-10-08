@@ -1,0 +1,68 @@
+name: Tipsa om en kod
+description: Har du hört en rabattkod i en podd? Berätta här så lägger vi in den.
+title: 'Ny kod: '
+labels: ['ny kod']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tack för tipset! Fyll i det du vet. Det viktigaste är **podden**, **koden** och **var den nämns**.
+  - type: input
+    id: podd
+    attributes:
+      label: Podd
+      placeholder: t.ex. Fotbollsmorgon
+    validations:
+      required: true
+  - type: input
+    id: varumarke
+    attributes:
+      label: Varumärke eller butik
+      placeholder: t.ex. Recipe for men
+    validations:
+      required: true
+  - type: input
+    id: kod
+    attributes:
+      label: Kod
+      description: Lämna tomt om erbjudandet bara går via en länk.
+      placeholder: t.ex. FOTBOLLSMORGON
+  - type: input
+    id: rabatt
+    attributes:
+      label: Vad får man?
+      placeholder: t.ex. 25 % på hela sortimentet
+    validations:
+      required: true
+  - type: input
+    id: lank
+    attributes:
+      label: Länk till butiken eller erbjudandet
+      placeholder: https://
+  - type: input
+    id: kalla
+    attributes:
+      label: Var nämns koden?
+      description: Länk till avsnittet, eller avsnittets namn och ungefär när i avsnittet.
+      placeholder: https://… eller "Avsnitt 412, ca 34 min in"
+    validations:
+      required: true
+  - type: input
+    id: datum
+    attributes:
+      label: När publicerades avsnittet?
+      placeholder: ÅÅÅÅ-MM-DD
+  - type: textarea
+    id: ovrigt
+    attributes:
+      label: Övrigt
+      description: Villkor, sista giltighetsdag eller annat som är bra att veta.
+  - type: checkboxes
+    id: regler
+    attributes:
+      label: Bekräfta
+      options:
+        - label: Koden har nämnts offentligt i podden (det är inte en personlig värva-en-vän-kod).
+          required: true
+        - label: Det är inte spel, receptbelagda läkemedel, alkohol, nikotin eller cannabis (sådant listar vi inte).
+          required: true

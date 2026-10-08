@@ -1,0 +1,81 @@
+---
+import External from '../components/External.astro';
+import Base from '../layouts/Base.astro';
+import Avatar from '../components/Avatar.astro';
+import OfferCard from '../components/OfferCard.astro';
+import DonateBox from '../components/DonateBox.astro';
+import { categoryLabel, type BrandSummary } from '../lib/offers.ts';
+import { paths, useT, type Lang } from '../i18n/index.ts';
+
+interface Props {
+  lang: Lang;
+  brand: BrandSummary;
+}
+
+const { lang, brand } = Astro.props;
+const t = useT(lang);
+const p = paths(lang);
+const podcastCount = new Set(brand.offers.map((o) => o.podcast.id)).size;
+---
+
+<Base
+  lang={lang}
+  title={t.brand.title(brand.name)}
+  description={t.brand.description(brand.name, brand.offers.length)}
+>
+  <div class="container page-head">
+    <a class="eyebrow" href={p.categoryPage(brand.category)}>{categoryLabel(brand.category, lang)}</a>
+    <div class="title-row">
+      <Avatar name={brand.name} size={72} />
+      <h1>{t.brand.h1(brand.name)}</h1>
+    </div>
+    {brand.offers.length > 0 && <p class="lead">{t.brand.lead(brand.offers.length, podcastCount)}</p>}
+    {
+      brand.website && (
+        <p>
+          <a class="chip" href={brand.website} rel="nofollow noopener" target="_blank">
+            {t.brand.visit(brand.name)} <External />
+          </a>
+        </p>
+      )
+    }
+  </div>
+
+  <section class="container section">
+    {
+      brand.offers.length ? (
+        <>
+          {podcastCount > 1 && <p class="fair">{t.brand.fairTip}</p>}
+          <div class="grid">
+            {brand.offers.map((offer) => (
+              <OfferCard offer={offer} lang={lang} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <p class="muted">{t.brand.empty}</p>
+      )
+    }
+  </section>
+
+  <section class="container section">
+    <DonateBox lang={lang} />
+  </section>
+</Base>
+
+<style>
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .fair {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    max-width: 680px;
+  }
+</style>

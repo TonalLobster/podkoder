@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import DonateBox from '../components/DonateBox.astro';
+import { SITE } from '../site.config.ts';
+import { useT, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useT(lang);
+const s = t.about.sections;
+---
+
+<Base lang={lang} title={t.about.title} description={t.about.description}>
+  <div class="container page-head">
+    <h1>{t.about.title}</h1>
+    <p class="lead">{s.what.body}</p>
+  </div>
+
+  <article class="container section prose">
+    <h2>{s.how.title}</h2>
+    <ol>
+      {s.how.steps.map((step) => <li>{step}</li>)}
+    </ol>
+
+    <h2>{s.freshness.title}</h2>
+    <p>{s.freshness.body(SITE.freshness.verifiedDays, SITE.freshness.hideAfterDays)}</p>
+
+    <h2>{s.fair.title}</h2>
+    <p>{s.fair.body}</p>
+
+    <h2>{s.noAffiliate.title}</h2>
+    <p>{s.noAffiliate.body}</p>
+
+    <h2>{s.open.title}</h2>
+    <p>{s.open.body}</p>
+    <ul>
+      <li><a href={SITE.repo}>{s.open.repo}</a></li>
+      <li><a href="/koder.json">{s.open.json}</a></li>
+    </ul>
+  </article>
+
+  <section class="container section">
+    <DonateBox lang={lang} />
+  </section>
+</Base>

@@ -1,0 +1,34 @@
+name: Jag är poddare
+description: Lägg till, rätta eller ta bort koder från din podd.
+title: 'Poddare: '
+labels: ['poddare']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kul att du hör av dig! Vi rättar eller tar bort uppgifter om din podd så snabbt vi kan.
+  - type: input
+    id: podd
+    attributes:
+      label: Podd
+    validations:
+      required: true
+  - type: dropdown
+    id: arende
+    attributes:
+      label: Vad vill du göra?
+      options:
+        - Lägga till koder
+        - Rätta en kod
+        - Ta bort en eller flera koder
+        - Ta bort podden helt
+        - Något annat
+    validations:
+      required: true
+  - type: textarea
+    id: detaljer
+    attributes:
+      label: Detaljer
+      description: Vilka koder det gäller och vad som ska ändras.
+    validations:
+      required: true

@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import OfferCard from '../components/OfferCard.astro';
+import DonateBox from '../components/DonateBox.astro';
+import type { Offer } from '../lib/offers.ts';
+import { paths, useT, type Lang } from '../i18n/index.ts';
+
+interface Props {
+  lang: Lang;
+  label: string;
+  offers: Offer[];
+  others: { id: string; label: string; count: number }[];
+}
+
+const { lang, label, offers, others } = Astro.props;
+const t = useT(lang);
+const p = paths(lang);
+---
+
+<Base lang={lang} title={t.category.title(label)} description={t.category.description(label)}>
+  <div class="container page-head">
+    <span class="eyebrow">{t.category.eyebrow}</span>
+    <h1>{label}</h1>
+    <p class="lead">{t.category.lead(offers.length)}</p>
+  </div>
+
+  <section class="container section">
+    <div class="grid">
+      {offers.map((offer) => <OfferCard offer={offer} lang={lang} />)}
+    </div>
+  </section>
+
+  {
+    others.length > 0 && (
+      <section class="container section">
+        <h2 class="others-h">{t.home.categories}</h2>
+        <ul class="chips">
+          {others.map((c) => (
+            <li>
+              <a class="chip" href={p.categoryPage(c.id)}>
+                {c.label} <span class="count">{c.count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <section class="container section">
+    <DonateBox lang={lang} />
+  </section>
+</Base>
+
+<style>
+  .others-h {
+    margin-bottom: 14px;
+  }
+</style>

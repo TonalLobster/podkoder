@@ -1,0 +1,39 @@
+# Skannar poddarnas RSS-flöden varje natt och öppnar en pull request med
+#  - nya kodförslag i candidates/ (granskas lokalt med `npm run review`)
+#  - nytt `last_verified` för koder som nämnts i nyare avsnitt
+#
+# Kräver att "Allow GitHub Actions to create and approve pull requests" är
+# påslaget under Settings → Actions → General.
+name: Skanna RSS
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run scan
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          branch: bot/rss-scan
+          delete-branch: true
+          title: 'RSS-skanning: nya kodförslag'
+          commit-message: 'rss-scan: nya förslag och återverifierade koder'
+          body-path: scripts/.cache/scan-report.md
+          labels: rss-scan
+          add-paths: |
+            candidates/
+            data/codes/

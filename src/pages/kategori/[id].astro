@@ -1,0 +1,21 @@
+---
+import CategoryView from '../../views/CategoryView.astro';
+import { getData } from '../../lib/offers.ts';
+
+export async function getStaticPaths() {
+  const { categories } = await getData('sv');
+  return categories.map((category) => ({
+    params: { id: category.id },
+    props: {
+      category,
+      others: categories
+        .filter((c) => c.id !== category.id)
+        .map((c) => ({ id: c.id, label: c.label, count: c.offers.length })),
+    },
+  }));
+}
+
+const { category, others } = Astro.props;
+---
+
+<CategoryView lang="sv" label={category.label} offers={category.offers} others={others} />

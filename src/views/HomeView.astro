@@ -1,0 +1,201 @@
+---
+import Base from '../layouts/Base.astro';
+import OfferCard from '../components/OfferCard.astro';
+import DonateBox from '../components/DonateBox.astro';
+import { SITE } from '../site.config.ts';
+import { getData } from '../lib/offers.ts';
+import { paths, useT, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useT(lang);
+const p = paths(lang);
+const { offers, podcasts, brands, categories } = await getData(lang);
+const activePodcasts = podcasts.filter((x) => x.offers.length).length;
+const activeBrands = brands.filter((x) => x.offers.length).length;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  inLanguage: lang,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE.url}${p.home === '/' ? '' : p.home}/?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<Base lang={lang} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>{t.home.title} <span class="accent">{t.home.titleAccent}</span></h1>
+      <p class="lead">{t.home.lead}</p>
+
+      <form class="search" role="search" action="" onsubmit="return false">
+        <label for="q" class="visually-hidden">{t.home.searchLabel}</label>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <input id="q" name="q" type="search" autocomplete="off" placeholder={t.home.searchPlaceholder} />
+      </form>
+
+      <p class="stats">{t.home.stats(offers.length, activePodcasts, activeBrands)}</p>
+    </div>
+  </section>
+
+  <section class="container section" aria-labelledby="cat-h">
+    <h2 id="cat-h" class="visually-hidden">{t.home.categories}</h2>
+    <ul class="chips">
+      {
+        categories.map((c) => (
+          <li>
+            <a class="chip" href={p.categoryPage(c.id)}>
+              {c.label} <span class="count">{c.offers.length}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="container section" aria-labelledby="latest-h">
+    <div class="section-head">
+      <h2 id="latest-h">{t.home.latest}</h2>
+      <p class="muted" id="result-count" data-one={t.home.showing(1)} data-many={t.home.showing(0)} aria-live="polite">
+        {t.home.showing(offers.length)}
+      </p>
+    </div>
+
+    <div class="grid" id="offers">
+      {offers.map((offer) => <OfferCard offer={offer} lang={lang} />)}
+    </div>
+
+    <div class="empty card panel" id="empty" hidden>
+      <p>{t.home.noResults} ”<span id="empty-q"></span>”.</p>
+      <a class="btn btn-primary" href={p.contribute}>{t.home.noResultsCta}</a>
+    </div>
+  </section>
+
+  <section class="container section">
+    <DonateBox lang={lang} />
+  </section>
+</Base>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('#q')!;
+  const cards = [...document.querySelectorAll<HTMLElement>('#offers > [data-search]')];
+  const count = document.querySelector<HTMLElement>('#result-count')!;
+  const empty = document.querySelector<HTMLElement>('#empty')!;
+  const emptyQ = document.querySelector<HTMLElement>('#empty-q')!;
+  const one = count.dataset.one ?? '';
+  const many = count.dataset.many ?? '';
+
+  // "Fördomspodden" ska hittas med "fordomspodden" och tvärtom.
+  const normalize = (s: string) =>
+    s
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '');
+  const haystacks = cards.map((card) => normalize(card.dataset.search ?? ''));
+
+  function apply(raw: string) {
+    const terms = normalize(raw).split(/\s+/).filter(Boolean);
+    let shown = 0;
+    cards.forEach((card, i) => {
+      const match = terms.every((term) => haystacks[i].includes(term));
+      card.hidden = !match;
+      if (match) shown++;
+    });
+    count.textContent = shown === 1 ? one : many.replace('0', String(shown));
+    empty.hidden = shown > 0;
+    emptyQ.textContent = raw;
+
+    const url = new URL(location.href);
+    if (raw) url.searchParams.set('q', raw);
+    else url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  }
+
+  input.addEventListener('input', () => apply(input.value.trim()));
+
+  const initial = new URLSearchParams(location.search).get('q');
+  if (initial) {
+    input.value = initial;
+    apply(initial);
+  }
+</script>
+
+<style>
+  .hero {
+    padding-block: clamp(40px, 8vw, 88px) 16px;
+  }
+
+  .hero-inner {
+    display: grid;
+    gap: 20px;
+  }
+
+  h1 {
+    max-width: 15ch;
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .search {
+    position: relative;
+    max-width: 640px;
+    margin-top: 8px;
+  }
+
+  .search svg {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    translate: 0 -50%;
+    color: var(--muted);
+    pointer-events: none;
+  }
+
+  .search input {
+    width: 100%;
+    min-height: 60px;
+    padding: 0 20px 0 52px;
+    border-radius: 999px;
+    border: 2px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font: 500 1.05rem var(--font-body);
+    box-shadow: var(--shadow);
+  }
+
+  .search input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .search input::placeholder {
+    color: var(--muted);
+  }
+
+  .stats {
+    font-size: 0.92rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .empty {
+    display: grid;
+    gap: 14px;
+    justify-items: start;
+    margin-top: 8px;
+  }
+
+  .empty[hidden] {
+    display: none;
+  }
+</style>

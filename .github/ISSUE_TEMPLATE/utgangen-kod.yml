@@ -1,0 +1,34 @@
+name: Koden funkar inte
+description: Rapportera en kod som har gått ut eller har fel uppgifter.
+title: 'Funkar inte: '
+labels: ['funkar inte']
+body:
+  - type: input
+    id: kod
+    attributes:
+      label: Vilken kod gäller det?
+      description: Fylls i automatiskt när du klickar på ”Funkar inte?” på sajten.
+      placeholder: t.ex. fotbollsmorgon--recipe-for-men
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: Vad är fel?
+      options:
+        - Koden är ogiltig eller har gått ut
+        - Rabatten är en annan än den som står
+        - Länken fungerar inte
+        - Något annat
+    validations:
+      required: true
+  - type: input
+    id: datum
+    attributes:
+      label: När testade du?
+      placeholder: ÅÅÅÅ-MM-DD
+  - type: textarea
+    id: detaljer
+    attributes:
+      label: Detaljer
+      description: Felmeddelande, vad butiken skrev, eller vad som borde stå i stället.

@@ -1,0 +1,34 @@
+name: I am a podcaster (English)
+description: Add, correct or remove codes from your podcast.
+title: 'Podcaster: '
+labels: ['poddare']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Great to hear from you! We correct or remove details about your podcast as quickly as we can.
+  - type: input
+    id: podd
+    attributes:
+      label: Podcast
+    validations:
+      required: true
+  - type: dropdown
+    id: arende
+    attributes:
+      label: What would you like to do?
+      options:
+        - Add codes
+        - Correct a code
+        - Remove one or more codes
+        - Remove the podcast entirely
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: detaljer
+    attributes:
+      label: Details
+      description: Which codes it is about and what should change.
+    validations:
+      required: true

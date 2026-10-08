@@ -1,0 +1,13 @@
+---
+import BrandView from '../../views/BrandView.astro';
+import { getPages } from '../../lib/offers.ts';
+
+export async function getStaticPaths() {
+  const { brands } = await getPages('sv');
+  return brands.map((brand) => ({ params: { id: brand.id }, props: { brand } }));
+}
+
+const { brand } = Astro.props;
+---
+
+<BrandView lang="sv" brand={brand} />

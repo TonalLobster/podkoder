@@ -1,0 +1,99 @@
+---
+import Base from '../layouts/Base.astro';
+import Avatar from '../components/Avatar.astro';
+import { categoryLabel, getData } from '../lib/offers.ts';
+import { paths, useT, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useT(lang);
+const p = paths(lang);
+const { brands } = await getData(lang);
+const listed = brands.filter((b) => b.offers.length > 0);
+
+// Gruppera på första bokstaven (A–Ö).
+const groups = new Map<string, typeof listed>();
+for (const brand of listed) {
+  const letter = /^[0-9]/.test(brand.name) ? '0–9' : brand.name[0].toUpperCase();
+  groups.set(letter, [...(groups.get(letter) ?? []), brand]);
+}
+---
+
+<Base lang={lang} title={t.brands.title} description={t.brands.description}>
+  <div class="container page-head">
+    <h1>{t.brands.title}</h1>
+    <p class="lead">{t.brands.lead}</p>
+    <nav class="letters" aria-label="A–Ö">
+      {[...groups.keys()].map((letter) => <a href={`#${encodeURIComponent(letter)}`}>{letter}</a>)}
+    </nav>
+  </div>
+
+  <div class="container section groups">
+    {
+      [...groups].map(([letter, items]) => (
+        <section aria-labelledby={`h-${letter}`}>
+          <h2 id={letter} class="letter">
+            <span id={`h-${letter}`}>{letter}</span>
+          </h2>
+          <ul class="grid-tight list">
+            {items.map((brand) => (
+              <li>
+                <a class="card link-card" href={p.brandPage(brand.id)}>
+                  <Avatar name={brand.name} size={40} />
+                  <span>
+                    <span class="name">{brand.name}</span>
+                    <br />
+                    <span class="meta">
+                      {categoryLabel(brand.category, lang)} · {brand.offers.length}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  .letters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .letters a {
+    display: inline-grid;
+    place-items: center;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .groups {
+    display: grid;
+    gap: 28px;
+  }
+
+  .letter {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    color: var(--accent);
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .list a {
+    height: 100%;
+  }
+</style>

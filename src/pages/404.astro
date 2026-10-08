@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { useT } from '../i18n/index.ts';
+
+const t = useT('sv');
+---
+
+<Base lang="sv" title={t.notFound.title}>
+  <div class="container page-head not-found">
+    <span class="eyebrow">404</span>
+    <h1>{t.notFound.title}</h1>
+    <p class="lead">{t.notFound.text}</p>
+    <p><a class="btn btn-primary" href="/">{t.notFound.home}</a></p>
+  </div>
+</Base>
+
+<style>
+  .not-found {
+    min-height: 50vh;
+    align-content: center;
+  }
+</style>

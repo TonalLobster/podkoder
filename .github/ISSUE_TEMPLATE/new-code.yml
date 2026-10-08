@@ -1,0 +1,77 @@
+name: Submit a code (English)
+description: Heard a promo code on a podcast? Tell us and we will add it.
+title: 'New code: '
+labels: ['ny kod']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the tip! Fill in what you know. The most important parts are the **podcast**, the **code** and **where it was mentioned**.
+  - type: input
+    id: podd
+    attributes:
+      label: Podcast
+      placeholder: e.g. The Weekly Show with Jon Stewart
+    validations:
+      required: true
+  - type: input
+    id: varumarke
+    attributes:
+      label: Brand or store
+      placeholder: e.g. Bombas
+    validations:
+      required: true
+  - type: input
+    id: kod
+    attributes:
+      label: Code
+      description: Leave empty if the offer only works through a link.
+      placeholder: e.g. WEEKLY
+  - type: input
+    id: rabatt
+    attributes:
+      label: What do you get?
+      placeholder: e.g. 20% off your first purchase
+    validations:
+      required: true
+  - type: input
+    id: lank
+    attributes:
+      label: Link to the store or offer
+      placeholder: https://
+  - type: dropdown
+    id: marknad
+    attributes:
+      label: Where does it work?
+      options:
+        - US only
+        - UK only
+        - Worldwide (apps, VPNs, digital services)
+        - Not sure
+  - type: input
+    id: kalla
+    attributes:
+      label: Where was the code mentioned?
+      description: A link to the episode, or the episode name and roughly when in the episode.
+      placeholder: https://… or "Episode 412, around 34 min"
+    validations:
+      required: true
+  - type: input
+    id: datum
+    attributes:
+      label: When was the episode published?
+      placeholder: YYYY-MM-DD
+  - type: textarea
+    id: ovrigt
+    attributes:
+      label: Anything else
+      description: Terms, expiry date or anything else worth knowing.
+  - type: checkboxes
+    id: regler
+    attributes:
+      label: Confirm
+      options:
+        - label: The code was mentioned publicly on the podcast (not a personal refer-a-friend code).
+          required: true
+        - label: It is not gambling, prescription medicine, alcohol, nicotine or cannabis (we do not list those).
+          required: true

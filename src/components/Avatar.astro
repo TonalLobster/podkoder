@@ -1,0 +1,53 @@
+---
+// Initialer i en färgad ruta. Vi visar inga poddomslag eller logotyper, eftersom
+// de är upphovsrättsskyddade och inte ingår i den öppna datan.
+interface Props {
+  name: string;
+  size?: number;
+  shape?: 'round' | 'square';
+}
+
+const { name, size = 40, shape = 'square' } = Astro.props;
+
+const words = name
+  .replace(/[–—:|].*$/, '')
+  .split(/\s+/)
+  .filter((w) => w && !['&', 'och', 'and', 'med', 'the', 'din'].includes(w.toLowerCase()));
+const initials = (words.length > 1 ? words[0][0] + words[1][0] : (words[0] ?? '?').slice(0, 2)).toUpperCase();
+
+let hash = 0;
+for (const ch of name) hash = (hash * 31 + ch.codePointAt(0)!) >>> 0;
+const hue = hash % 360;
+---
+
+<span
+  class:list={['avatar', shape]}
+  style={`--h:${hue};--s:${size}px`}
+  aria-hidden="true">{initials}</span
+>
+
+<style>
+  .avatar {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: var(--s);
+    height: var(--s);
+    border-radius: calc(var(--s) * 0.28);
+    background: hsl(var(--h) 65% 88%);
+    color: hsl(var(--h) 55% 26%);
+    font: 750 calc(var(--s) * 0.38) / 1 var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  .round {
+    border-radius: 50%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .avatar {
+      background: hsl(var(--h) 30% 24%);
+      color: hsl(var(--h) 70% 84%);
+    }
+  }
+</style>

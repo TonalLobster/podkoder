@@ -1,0 +1,34 @@
+name: Code not working (English)
+description: Report a code that has expired or has the wrong details.
+title: 'Not working: '
+labels: ['funkar inte']
+body:
+  - type: input
+    id: kod
+    attributes:
+      label: Which code is it?
+      description: Filled in automatically when you click “Not working?” on the site.
+      placeholder: e.g. weekly-show-jon-stewart--bombas
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What is wrong?
+      options:
+        - The code is invalid or has expired
+        - The discount is different from what is listed
+        - The link does not work
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: datum
+    attributes:
+      label: When did you try it?
+      placeholder: YYYY-MM-DD
+  - type: textarea
+    id: detaljer
+    attributes:
+      label: Details
+      description: Error message, what the store said, or what it should say instead.

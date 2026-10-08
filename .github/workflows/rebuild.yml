@@ -1,0 +1,25 @@
+# Sajten är statisk och räknar ut om en kod är färsk eller gammal vid bygget.
+# Därför byggs den om varje natt, via en deploy hook i Cloudflare Pages.
+#
+# Skapa en hook under Cloudflare Pages → Settings → Builds → Deploy hooks och
+# spara URL:en som repo-hemligheten CF_DEPLOY_HOOK.
+name: Bygg om varje natt
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigga deploy hook
+        env:
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "CF_DEPLOY_HOOK är inte satt, hoppar över."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK"

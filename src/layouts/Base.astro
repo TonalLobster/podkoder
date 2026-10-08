@@ -1,0 +1,85 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../site.config.ts';
+import { LANGS, translatePath, useT, type Lang } from '../i18n/index.ts';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** Strukturerad data (JSON-LD) för sökmotorer. */
+  jsonLd?: Record<string, unknown>;
+}
+
+const { lang, title, description, jsonLd } = Astro.props;
+const t = useT(lang);
+const fullTitle = title ? `${title} | ${SITE.name}` : t.meta.title;
+const desc = description ?? t.meta.description;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), SITE.url).href;
+
+// hreflang bara för sidor som finns på alla språk (startsida, om, bidra …).
+const alternates = LANGS.map((l) => ({ lang: l, ...translatePath(Astro.url.pathname, lang, l) }));
+const showAlternates = alternates.every((a) => a.exact);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    {
+      showAlternates &&
+        alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={new URL(a.path, SITE.url).href} />)
+    }
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#f8f4ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#161412" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title ?? t.meta.title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={t.locale.replace('-', '_')} />
+    <meta name="twitter:card" content="summary" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.nav.skip}</a>
+    <Header lang={lang} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <script>
+      // Kopiera-knappar på kupongerna (event delegation, fungerar för alla kort).
+      document.addEventListener('click', async (event) => {
+        const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button[data-copy]');
+        if (!button) return;
+        const code = button.dataset.copy ?? '';
+        try {
+          await navigator.clipboard.writeText(code);
+        } catch {
+          // Äldre webbläsare: markera koden så att man kan kopiera själv.
+          const codeEl = button.parentElement?.querySelector('code');
+          if (codeEl) window.getSelection()?.selectAllChildren(codeEl);
+          return;
+        }
+        const label = button.textContent;
+        button.textContent = button.dataset.copied ?? '✓';
+        button.dataset.done = '';
+        setTimeout(() => {
+          button.textContent = label;
+          delete button.dataset.done;
+        }, 1800);
+      });
+    </script>
+  </body>
+</html>

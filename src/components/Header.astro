@@ -1,0 +1,185 @@
+---
+import Logo from './Logo.astro';
+import { hasDonations } from '../site.config.ts';
+import { paths, translatePath, useT, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useT(lang);
+const p = paths(lang);
+const current = Astro.url.pathname.replace(/\.html$/, '');
+const otherLang: Lang = lang === 'sv' ? 'en' : 'sv';
+const switchHref = translatePath(Astro.url.pathname, lang, otherLang).path;
+
+const nav = [
+  { href: p.podcasts, label: t.nav.podcasts, match: [p.podcasts, p.podcast] },
+  { href: p.brands, label: t.nav.brands, match: [p.brands, p.brand] },
+  { href: p.contribute, label: t.nav.contribute, match: [p.contribute] },
+  { href: p.about, label: t.nav.about, match: [p.about] },
+];
+const isCurrent = (match: readonly string[]) => match.some((m) => current === m || current.startsWith(`${m}/`));
+const showSupport = hasDonations() || import.meta.env.DEV;
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <Logo lang={lang} />
+    <nav aria-label="Huvudmeny">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.match) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a class="lang" href={switchHref} hreflang={otherLang} lang={otherLang} aria-label={t.nav.switchLangLabel}>
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+        <path d="M3 12h18M12 3c2.5 2.7 3.6 5.7 3.6 9s-1.1 6.3-3.6 9c-2.5-2.7-3.6-5.7-3.6-9S9.5 5.7 12 3Z" fill="none" stroke="currentColor" stroke-width="1.8"></path>
+      </svg>
+      <span class="long">{t.nav.switchLang}</span>
+      <span class="short" aria-hidden="true">{otherLang.toUpperCase()}</span>
+    </a>
+    {
+      showSupport && (
+        <a class="btn btn-sm support" href={p.support}>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path
+              d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Zm12 1h1.5a2.5 2.5 0 0 1 0 5H16M8 3v3m4-3v3"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          {t.nav.support}
+        </a>
+      )
+    }
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: 'logo nav lang support';
+    align-items: center;
+    gap: 8px 20px;
+    min-height: 64px;
+  }
+
+  .bar > :global(.logo) {
+    grid-area: logo;
+  }
+
+  nav {
+    grid-area: nav;
+    justify-self: end;
+  }
+
+  .lang {
+    grid-area: lang;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .lang:hover {
+    color: var(--ink);
+    background: var(--surface);
+  }
+
+  .lang .short {
+    display: none;
+  }
+
+  .support {
+    grid-area: support;
+    white-space: nowrap;
+  }
+
+  ul {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--ink);
+    background: var(--surface);
+  }
+
+  @media (max-width: 760px) {
+    /* Två rader header tar för mycket plats om den följer med vid scroll. */
+    .site-header {
+      position: static;
+    }
+
+    .bar {
+      grid-template-columns: 1fr auto auto;
+      grid-template-areas:
+        'logo lang support'
+        'nav nav nav';
+      padding-block: 10px 6px;
+      column-gap: 4px;
+    }
+
+    .lang .long {
+      display: none;
+    }
+
+    .lang .short {
+      display: inline;
+    }
+
+    nav {
+      justify-self: stretch;
+      overflow-x: auto;
+      margin-inline: calc(var(--gutter) * -1);
+      padding-inline: calc(var(--gutter) - 12px);
+      scrollbar-width: none;
+    }
+
+    nav::-webkit-scrollbar {
+      display: none;
+    }
+  }
+</style>

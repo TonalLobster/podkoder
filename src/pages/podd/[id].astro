@@ -1,0 +1,13 @@
+---
+import PodcastView from '../../views/PodcastView.astro';
+import { getPages } from '../../lib/offers.ts';
+
+export async function getStaticPaths() {
+  const { podcasts } = await getPages('sv');
+  return podcasts.map((podcast) => ({ params: { id: podcast.id }, props: { podcast } }));
+}
+
+const { podcast } = Astro.props;
+---
+
+<PodcastView lang="sv" podcast={podcast} />

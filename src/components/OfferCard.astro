@@ -1,0 +1,303 @@
+---
+import External from './External.astro';
+import Avatar from './Avatar.astro';
+import { SITE } from '../site.config.ts';
+import { categoryLabel, searchText, type Offer } from '../lib/offers.ts';
+import { formatDate, paths, useT, type Lang } from '../i18n/index.ts';
+
+interface Props {
+  offer: Offer;
+  lang: Lang;
+  /** Dölj "via <podd>" på poddens egen sida. */
+  showPodcast?: boolean;
+}
+
+const { offer, lang, showPodcast = true } = Astro.props;
+const t = useT(lang);
+const p = paths(lang);
+
+const seen = formatDate(offer.lastVerified, lang);
+const statusText = offer.status === 'verified' ? t.offer.seen(seen) : t.offer.aging(seen);
+
+const reportUrl =
+  `${SITE.repo}/issues/new?template=${t.templates.report}` +
+  `&title=${encodeURIComponent(t.offer.reportTitle(offer.brand.name, offer.podcast.name))}` +
+  `&kod=${encodeURIComponent(offer.id)}`;
+
+// På svenska sajten är SE underförstått; allt annat märks ("Gäller internationellt", "Bara USA").
+const showMarket = !(lang === 'sv' && offer.market === 'SE');
+---
+
+<article class="offer card" data-search={searchText(offer, lang)} data-status={offer.status}>
+  <div class="body">
+    <header class="head">
+      <Avatar name={offer.brand.name} size={42} />
+      <div>
+        <h3><a href={p.brandPage(offer.brand.id)}>{offer.brand.name}</a></h3>
+        <a class="cat" href={p.categoryPage(offer.brand.category)}>{categoryLabel(offer.brand.category, lang)}</a>
+      </div>
+      {
+        showMarket && (
+          <span class:list={['market', offer.market]} title={t.offer.marketTitle}>
+            {t.offer.market[offer.market]}
+          </span>
+        )
+      }
+    </header>
+
+    <p class="discount">{offer.discount}</p>
+
+    {
+      showPodcast && (
+        <p class="via">
+          {t.offer.via} <a href={p.podcastPage(offer.podcast.id)}>{offer.podcast.name}</a>
+        </p>
+      )
+    }
+    {offer.note && <p class="note">{offer.note}</p>}
+  </div>
+
+  <div class="ticket">
+    {
+      offer.code ? (
+        <>
+          <div class="code-row">
+            <code class="code">{offer.code}</code>
+            <button
+              type="button"
+              class="btn btn-sm copy"
+              data-copy={offer.code}
+              data-copied={t.offer.copied}
+              aria-label={t.offer.copyLabel(offer.code)}
+            >
+              {t.offer.copy}
+            </button>
+          </div>
+          {offer.url && (
+            <a class="store" href={offer.url} rel="nofollow noopener" target="_blank">
+              {t.offer.toStore} <External />
+            </a>
+          )}
+        </>
+      ) : (
+        <>
+          <p class="link-only">{t.offer.linkOnly}</p>
+          <a class="btn btn-primary btn-sm" href={offer.url} rel="nofollow noopener" target="_blank">
+            {t.offer.openOffer} <External />
+          </a>
+        </>
+      )
+    }
+  </div>
+
+  <footer class="foot">
+    <span class:list={['status', offer.status]}>
+      <span class="dot" aria-hidden="true"></span>
+      {statusText}
+    </span>
+    {offer.validUntil && <span class="valid">{t.offer.validUntil(formatDate(offer.validUntil, lang))}</span>}
+    <span class="actions">
+      <a
+        href={offer.source}
+        rel="nofollow noopener"
+        target="_blank"
+        title={offer.episode ? t.offer.episode(offer.episode) : undefined}>{t.offer.source}</a
+      >
+      <a href={reportUrl} rel="nofollow noopener" target="_blank">{t.offer.report}</a>
+    </span>
+  </footer>
+</article>
+
+<style>
+  .offer {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .body {
+    display: grid;
+    gap: 10px;
+    padding: 18px 18px 16px;
+    flex: 1;
+    align-content: start;
+  }
+
+  .head {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .head > div {
+    min-width: 0;
+  }
+
+  h3 a {
+    text-decoration: none;
+  }
+
+  .market {
+    margin-left: auto;
+    align-self: start;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .market.INT {
+    color: var(--ok);
+    border-color: color-mix(in srgb, var(--ok) 40%, transparent);
+    background: var(--ok-soft);
+  }
+
+  .cat {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .cat:hover {
+    text-decoration: underline;
+  }
+
+  .discount {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .via {
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  .via a {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .note {
+    font-size: 0.86rem;
+    color: var(--muted);
+  }
+
+  /* Kupongdelen, med perforering och halvcirklar i kanterna */
+  .ticket {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    padding: 16px 18px;
+    background: var(--ticket);
+    border-top: 2px dashed var(--ticket-line);
+  }
+
+  .ticket::before,
+  .ticket::after {
+    content: '';
+    position: absolute;
+    top: -11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--line);
+  }
+
+  .ticket::before {
+    left: -11px;
+  }
+
+  .ticket::after {
+    right: -11px;
+  }
+
+  .code-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .code {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font: 700 1.15rem/1.2 var(--font-mono);
+    letter-spacing: 0.04em;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--ticket-line);
+    user-select: all;
+  }
+
+  .copy {
+    flex: none;
+    min-width: 92px;
+  }
+
+  .copy[data-done] {
+    background: var(--ok);
+    border-color: var(--ok);
+    color: var(--surface);
+  }
+
+  .store {
+    font-size: 0.9rem;
+    font-weight: 600;
+    justify-self: start;
+  }
+
+  .link-only {
+    font-size: 0.9rem;
+  }
+
+  .ticket .btn-primary {
+    justify-self: start;
+  }
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    padding: 12px 18px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .status.verified {
+    color: var(--ok);
+  }
+
+  .status.aging {
+    color: var(--warn);
+  }
+
+  .actions {
+    display: inline-flex;
+    gap: 12px;
+    margin-left: auto;
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+import { SITE } from '../site.config.ts';
+import { paths, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<a class="logo" href={paths(lang).home} aria-label={`${SITE.name}, startsida`}>
+  <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+    <rect width="32" height="32" rx="9" fill="var(--accent)"></rect>
+    <path d="M10.5 22.5 21.5 9.5" stroke="var(--accent-ink)" stroke-width="2.8" stroke-linecap="round"></path>
+    <circle cx="11" cy="11" r="3.2" fill="var(--accent-ink)"></circle>
+    <circle cx="21" cy="21" r="3.2" fill="var(--accent-ink)"></circle>
+  </svg>
+  <span>{SITE.name}</span>
+</a>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 750;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .logo:hover {
+    color: inherit;
+  }
+
+  .logo svg {
+    flex: none;
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import Logo from './Logo.astro';
+import { SITE } from '../site.config.ts';
+import { paths, useT, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useT(lang);
+const p = paths(lang);
+---
+
+<footer class="site-footer">
+  <div class="container cols">
+    <div class="brand">
+      <Logo lang={lang} />
+      <p class="muted">{t.footer.tagline}</p>
+    </div>
+    <ul class="links">
+      <li><a href={p.podcasts}>{t.nav.podcasts}</a></li>
+      <li><a href={p.brands}>{t.nav.brands}</a></li>
+      <li><a href={p.contribute}>{t.nav.contribute}</a></li>
+      <li><a href={p.about}>{t.nav.about}</a></li>
+      <li><a href={SITE.repo}>{t.footer.github}</a></li>
+      <li><a href="/koder.json">{t.footer.data}</a></li>
+    </ul>
+  </div>
+  <div class="container fine">
+    <p>{t.footer.disclaimer}</p>
+    <p>{t.footer.license}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 48px;
+    border-top: 1px solid var(--line);
+    padding-block: 36px 28px;
+    font-size: 0.92rem;
+  }
+
+  .cols {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand {
+    display: grid;
+    gap: 8px;
+    max-width: 340px;
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 8px 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .links a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .fine {
+    display: grid;
+    gap: 4px;
+    margin-top: 28px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+</style>

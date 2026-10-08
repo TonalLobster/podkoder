@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Avatar from '../components/Avatar.astro';
+import { getData } from '../lib/offers.ts';
+import { paths, useT, type Lang } from '../i18n/index.ts';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useT(lang);
+const p = paths(lang);
+const { podcasts } = await getData(lang);
+const listed = podcasts.filter((x) => x.offers.length > 0);
+---
+
+<Base lang={lang} title={t.podcasts.title} description={t.podcasts.description}>
+  <div class="container page-head">
+    <h1>{t.podcasts.title}</h1>
+    <p class="lead">{t.podcasts.lead}</p>
+  </div>
+
+  <section class="container section">
+    <ul class="grid-tight list">
+      {
+        listed.map((podcast) => (
+          <li>
+            <a class="card link-card" href={p.podcastPage(podcast.id)}>
+              <Avatar name={podcast.name} size={48} />
+              <span>
+                <span class="name">{podcast.name}</span>
+                <br />
+                <span class="meta">{t.podcast.count(podcast.offers.length)}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .list a {
+    height: 100%;
+  }
+</style>
