@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: shawn-ryan-show
+podcast_name: The Shawn Ryan Show
+language: en
+rss: https://rss.pdrl.fm/ac69ac/feeds.megaphone.fm/WWO7410387571
+brand_guess: babbel
+discount_guess: 60 %
+url_guess: https://babbel.com/SRS
+source: https://shawnryanshow.com
+episode: "#348 Frank Wright - The Last Living Original Marine Raider From WW2"
+published: 2026-10-15
+context: Start learning a new language today with Babbel and save up to 60% at https://babbel.com/SRS (https://babbel.com/SRS%20)Rules and restrictions may apply.
+found: 2026-10-17

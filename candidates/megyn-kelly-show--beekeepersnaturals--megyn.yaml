@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: beekeepersnaturals
+discount_guess: 20 %
+url_guess: https://beekeepersnaturals.com/MEGYN
+source: https://www.siriusxm.com
+episode: What the Shane Gillis Shorts Freakout Reveals, and the Inside Story of Tom Brady's Gisele Divorce and "True Love" Football, with Lars Anderson  |  Ep. 1419
+published: 2026-10-15
+context: "BeeKeeper's Naturals: Go to https://beekeepersnaturals.com/MEGYN or enter code MEGYN for 20% off your order"
+found: 2026-10-17

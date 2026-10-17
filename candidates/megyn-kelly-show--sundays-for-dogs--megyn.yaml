@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: sundays-for-dogs
+discount_guess: 30 %
+url_guess: https://sundaysfordogs.com/MEGYN
+source: https://www.siriusxm.com
+episode: The Ilhan Omar Deportation Question, and Kimberly Guilfoyle's Next Move, with RealClearPolitics, Plus Stephanie Lazarus Parole Hearing  |  Ep. 1418
+published: 2026-10-14
+context: "Sundays for Dogs: Upgrade your dog’s food without the hassle—try Sundays for Dogs and get 30% off your first order at https://sundaysfordogs.com/MEGYN or use code MEGYN at checkout."
+found: 2026-10-17

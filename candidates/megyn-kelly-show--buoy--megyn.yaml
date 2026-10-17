@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: buoy
+discount_guess: 31 %
+url_guess: https://justaddbuoy.com/megyn
+source: https://www.siriusxm.com
+episode: New Press Secretary Already Fired, Kelly Clarkson Security Footage, and Casey Anthony Has Thoughts on Shane Gillis, with Maureen Callahan  |  Ep. 1420
+published: 2026-10-16
+context: "Buoy: Head to https://justaddbuoy.com/megyn and use code MEGYN for 31% off the Liquid Electrolyte Discovery Set, backed by a 30-day risk-free guarantee"
+found: 2026-10-17
