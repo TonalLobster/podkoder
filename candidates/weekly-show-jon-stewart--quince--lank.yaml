@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: weekly-show-jon-stewart
+podcast_name: The Weekly Show with Jon Stewart
+language: en
+rss: https://feeds.megaphone.fm/BVLLC2163264914
+brand_guess: quince
+discount_guess: free shipping
+url_guess: https://Quince.com/TWS
+source: https://art19.com/shows/jon-stewart
+episode: Socializing with NYC Mayor Zohran Mamdani
+published: 2026-07-22
+context: QUINCE - Head to https://Quince.com/TWS (https://quince.com/TWS) for free shipping on your order and 365-day returns. Now available in Canada, too.
+found: 2026-10-17

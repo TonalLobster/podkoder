@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: Megyn
+brand_guess: veracityhealth
+discount_guess: 65 %
+url_guess: https://VeracityHealth.co
+source: https://www.siriusxm.com
+episode: The Ilhan Omar Raid Mystery, Alex Cooper's Past Exposed, Selma Blair's Plane Meltdown, and Andy Ngo on Disturbing "Trans" Cult  |  Ep. 1417
+published: 2026-10-13
+context: "Veracity Health: Head to https://VeracityHealth.co (https://veracityhealth.co/) and use code Megyn for up to 65% off your order"
+found: 2026-10-17

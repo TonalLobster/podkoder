@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: cozy-earth
+discount_guess: 20 %
+url_guess: https://www.CozyEarth.com
+source: https://www.siriusxm.com
+episode: The Ilhan Omar Raid Mystery, Alex Cooper's Past Exposed, Selma Blair's Plane Meltdown, and Andy Ngo on Disturbing "Trans" Cult  |  Ep. 1417
+published: 2026-10-13
+context: "Cozy Earth: Visit https://www.CozyEarth.com (https://www.cozyearth.com/) & Use code MEGYN for up to 20% off"
+found: 2026-10-17
