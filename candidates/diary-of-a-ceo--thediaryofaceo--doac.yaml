@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: diary-of-a-ceo
+podcast_name: The Diary Of A CEO with Steven Bartlett
+language: en
+rss: https://rss2.flightcast.com/xmsftuzjjykcmqwolaqn6mdn
+code: DOAC
+brand_guess: thediaryofaceo
+url_guess: https://link.thediaryofaceo.com/51zrfNX
+source: https://steven.com/
+episode: "The Phone Addiction Expert: Your Feed Works Exactly Like A Slot Machine! | Dr Sahar Yousef"
+published: 2026-10-15
+context: "Go to MyChronotype - https://link.thediaryofaceo.com/51zrfNX to take the chronotype assessment for free use the code: DOAC"
+found: 2026-10-24

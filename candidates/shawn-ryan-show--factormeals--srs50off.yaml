@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: shawn-ryan-show
+podcast_name: The Shawn Ryan Show
+language: en
+rss: https://rss.pdrl.fm/ac69ac/feeds.megaphone.fm/WWO7410387571
+code: srs50off
+brand_guess: factormeals
+discount_guess: 50 %
+url_guess: https://factormeals.com/srs50off
+source: https://shawnryanshow.com
+episode: "#347 Pierogi - Shawn Ryan and Scammer Payback Troll Scammers LIVE"
+published: 2026-10-12
+context: Head to https://factormeals.com/srs50off and use code srs50off to get 50% off and 1 free breakfast item per box for 1 year, while supplies last until 10/31/2026. See website for more details.
+found: 2026-10-24

@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: diary-of-a-ceo
+podcast_name: The Diary Of A CEO with Steven Bartlett
+language: en
+rss: https://rss2.flightcast.com/xmsftuzjjykcmqwolaqn6mdn
+code: STEVEN
+brand_guess: cometeer
+discount_guess: $30 off
+url_guess: https://www.cometeer.com/steven
+source: https://steven.com/
+episode: "The Deathbed Doctor: Modern Hospitals Are Destroying Your Final Days!"
+published: 2026-10-19
+context: Cometeer - https://www.cometeer.com/steven using code STEVEN for $30 off
+found: 2026-10-24
