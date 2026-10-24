@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: veracityhealth
+discount_guess: 65 %
+url_guess: https://VeracityHealth.co
+source: https://www.siriusxm.com
+episode: Prince Harry's New UK Grift, with Piers Morgan, Plus Ilhan Omar's Mysterious Millions, and the Amy Acton Mom Ad Drama  |  Ep.1423
+published: 2026-10-21
+context: "Veracity Health: Head to https://VeracityHealth.co (https://veracityhealth.co/) and use code MEGYN for up to 65% off your order"
+found: 2026-10-24

@@ -1,0 +1,12 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: shawn-ryan-show
+podcast_name: The Shawn Ryan Show
+language: en
+rss: https://rss.pdrl.fm/ac69ac/feeds.megaphone.fm/WWO7410387571
+brand_guess: ag1
+url_guess: https://drinkag1.com/SRS
+source: https://shawnryanshow.com
+episode: "#350 Mike Hayes - The Navy SEAL in Obama’s Situation Room During the Captain Phillips Rescue"
+published: 2026-10-22
+context: Go to https://drinkag1.com/SRS and for a limited time, get a free Immune Support Bundle, including a bottle of Omega-3 fish oil and a bottle of Vitamin D3K2, with your first subscription order of AG1 Next Gen or AG1 Pro.
+found: 2026-10-24

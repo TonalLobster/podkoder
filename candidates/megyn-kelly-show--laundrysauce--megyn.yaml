@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: laundrysauce
+discount_guess: 20 %
+url_guess: https://laundrysauce.com/MEGYN
+source: https://www.siriusxm.com
+episode: Ilhan Omar's DNA, Questions About Amy Acton Emerge, and Christina Applegate Reveals She NEVER Had MS, with Ruthless  |  Ep. 1422
+published: 2026-10-20
+context: "Laundry Sauce: Make laundry day the best day of the week! Get 20% off your entire order @LaundrySauce with code MEGYN at https://laundrysauce.com/MEGYN #laundrysaucepod"
+found: 2026-10-24
