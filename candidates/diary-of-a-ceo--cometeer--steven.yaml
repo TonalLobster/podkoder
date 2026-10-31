@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: diary-of-a-ceo
+podcast_name: The Diary Of A CEO with Steven Bartlett
+language: en
+rss: https://rss2.flightcast.com/xmsftuzjjykcmqwolaqn6mdn
+code: STEVEN
+brand_guess: cometeer
+discount_guess: $30 off
+url_guess: http://cometeer.com/steven
+source: https://steven.com/
+episode: "Mark Cuban: This Is Bigger Than The Internet, But People Keep The Edge!"
+published: 2026-10-26
+context: Cometeer - http://cometeer.com/steven use code STEVEN for $30 off
+found: 2026-10-31
