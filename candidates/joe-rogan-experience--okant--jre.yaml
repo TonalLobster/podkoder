@@ -1,0 +1,12 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: joe-rogan-experience
+podcast_name: The Joe Rogan Experience
+language: en
+rss: https://feeds.megaphone.fm/GLT1412515089
+code: JRE
+discount_guess: 20 %
+source: https://feeds.megaphone.fm/GLT1412515089
+episode: "#2570 - Mystery Boys"
+published: 2026-10-23
+context: Use code JRE for 20% off your membership
+found: 2026-10-31
