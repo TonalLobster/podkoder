@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: home-title-lock
+url_guess: https://hometitlelock.com
+source: https://www.siriusxm.com
+episode: "Hegseth Impeachment Push, Citibank Shooting Hero, Wall Street Selloff: AM Update 11/6"
+published: 2026-11-06
+context: "Home Title Lock: Go to https://hometitlelock.com (https://hometitlelock.com/) and use promo code MEGYN to get a FREE title history report and a FREE TRIAL of their Triple Lock Protection"
+found: 2026-11-07
