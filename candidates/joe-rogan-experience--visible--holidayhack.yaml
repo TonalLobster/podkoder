@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: joe-rogan-experience
+podcast_name: The Joe Rogan Experience
+language: en
+rss: https://feeds.megaphone.fm/GLT1412515089
+code: HOLIDAYHACK
+brand_guess: visible
+discount_guess: $19 off
+url_guess: https://www.Visible.com
+source: https://feeds.megaphone.fm/GLT1412515089
+episode: "#2580 - Kenneth Lacovara"
+published: 2026-11-12
+context: Switch today at https://www.Visible.com for just $19/mo for one year on the Visible plan with promo code HOLIDAYHACK. Or get the premium Visible+ Pro plan and save $10 on your first month with code ROGAN.
+found: 2026-11-14

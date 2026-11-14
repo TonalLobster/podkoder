@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: theo-von
+podcast_name: This Past Weekend w/ Theo Von
+language: en
+rss: https://feeds.megaphone.fm/thispastweekend
+code: TPW
+brand_guess: theglacierapp
+discount_guess: 20 %
+url_guess: https://theglacierapp.com/TPW
+source: https://art19.com/shows/this-past-weekend
+episode: "#695 - Happiness Expert Dr. Arthur Brooks"
+published: 2026-11-11
+context: "Glacier: Privacy isn't paranoia. It's protection. Get 20% off your first 3 months athttp://theglacierapp.com/TPW and use code TPW at checkout. #ad"
+found: 2026-11-14

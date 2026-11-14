@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: shawn-ryan-show
+podcast_name: The Shawn Ryan Show
+language: en
+rss: https://rss.pdrl.fm/ac69ac/feeds.megaphone.fm/WWO7410387571
+brand_guess: trykepos
+discount_guess: 47 % + $62 off
+url_guess: https://trykepos.com/SRS
+source: https://shawnryanshow.com
+episode: "#353 Dr. Thomas Madden - Rome Historian Reveals the 7 Warning Signs of a Dying Republic"
+published: 2026-11-02
+context: Get 47% off your first order of kēpos, the award-winning daily gut health supplement, plus free gifts valued at $62 at https://trykepos.com/SRS
+found: 2026-11-14

@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: joe-rogan-experience
+podcast_name: The Joe Rogan Experience
+language: en
+rss: https://feeds.megaphone.fm/GLT1412515089
+brand_guess: superpower
+discount_guess: $50 off
+url_guess: https://superpower.com/rogan
+source: https://feeds.megaphone.fm/GLT1412515089
+episode: "#2581 - Protect Our Parks 18"
+published: 2026-11-13
+context: Visit https://superpower.com/rogan for $50 off your membership.
+found: 2026-11-14
