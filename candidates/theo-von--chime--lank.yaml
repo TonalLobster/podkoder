@@ -1,0 +1,12 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: theo-von
+podcast_name: This Past Weekend w/ Theo Von
+language: en
+rss: https://feeds.megaphone.fm/thispastweekend
+brand_guess: chime
+url_guess: https://chime.com/THEOhttp://Chime.com/THEO
+source: https://art19.com/shows/this-past-weekend
+episode: "#693 - Consumer Advocate Lindsay Owens"
+published: 2026-11-03
+context: "Chime: Join the millions who are already banking for free and sign up now athttp://chime.com/THEOhttp://Chime.com/THEO (http://chime.com/THEO)"
+found: 2026-11-14

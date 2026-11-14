@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: good-hang
+podcast_name: Good Hang with Amy Poehler
+language: en
+rss: https://feeds.megaphone.fm/good-hang-with-amy-poehler
+code: HOLIDAYHACK
+brand_guess: visible
+discount_guess: $19 off
+url_guess: https://www.Visible.com
+source: https://www.theringer.com
+episode: Robyn
+published: 2026-11-10
+context: Make the switch today at https://www.Visible.com (https://www.visible.com/m/home). For a limited time plans start at $19/mo guaranteed for one year. Use promo code HOLIDAYHACK.
+found: 2026-11-14

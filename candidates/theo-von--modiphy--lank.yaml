@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: theo-von
+podcast_name: This Past Weekend w/ Theo Von
+language: en
+rss: https://feeds.megaphone.fm/thispastweekend
+brand_guess: modiphy
+discount_guess: 50 %
+url_guess: https://modiphy.com/THEO
+source: https://art19.com/shows/this-past-weekend
+episode: "#693 - Consumer Advocate Lindsay Owens"
+published: 2026-11-03
+context: "Modiphy: Get 50% off the last website you’ll ever need at https://modiphy.com/THEO"
+found: 2026-11-14

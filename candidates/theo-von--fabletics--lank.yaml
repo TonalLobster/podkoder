@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: theo-von
+podcast_name: This Past Weekend w/ Theo Von
+language: en
+rss: https://feeds.megaphone.fm/thispastweekend
+brand_guess: fabletics
+discount_guess: 80 %
+url_guess: https://Fabletics.com/WEEKEND
+source: https://art19.com/shows/this-past-weekend
+episode: "#695 - Happiness Expert Dr. Arthur Brooks"
+published: 2026-11-11
+context: "Fabletics: Shop now athttp://Fabletics.com/WEEKEND (http://fabletics.com/WEEKEND) to get 70–80% off everything when you sign up as a new VIP."
+found: 2026-11-14

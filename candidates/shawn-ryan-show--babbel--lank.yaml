@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: shawn-ryan-show
+podcast_name: The Shawn Ryan Show
+language: en
+rss: https://rss.pdrl.fm/ac69ac/feeds.megaphone.fm/WWO7410387571
+brand_guess: babbel
+discount_guess: 60 %
+url_guess: https://babbel.com/SRS
+source: https://shawnryanshow.com
+episode: "#356 Joe Kent - Susie Wiles, Stephen Miller, Midterms and the AIPAC Problem"
+published: 2026-11-12
+context: Go to https://babbel.com/SRS to start learning a new language today and save up to 60%. Rules and restrictions may apply.
+found: 2026-11-14
