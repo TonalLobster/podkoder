@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: joe-rogan-experience
+podcast_name: The Joe Rogan Experience
+language: en
+rss: https://feeds.megaphone.fm/GLT1412515089
+brand_guess: blackriflecoffee
+discount_guess: 30 %
+url_guess: https://blackriflecoffee.com/joerogan
+source: https://feeds.megaphone.fm/GLT1412515089
+episode: "#2582 - Greg Anderson"
+published: 2026-11-18
+context: Great Coffee, Great Mission – Black Rifle Coffee is America’s Coffee. Visit blackriflecoffee.com/joerogan today to get 30% off your next order.
+found: 2026-11-21

@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: buoy
+discount_guess: 31 %
+url_guess: https://justaddbuoy.com/megyn
+source: https://www.siriusxm.com
+episode: The Campaigns Against Russell Brand and JD Vance, with Bret Weinstein, Plus Alarming Jennifer Lawrence and Mariah Carey Looks, with Kirsten Fleming  |  Ep. 1445
+published: 2026-11-19
+context: "Buoy: Head to https://justaddbuoy.com/megyn & use code MEGYN for 31% off the Liquid Electrolyte Discovery Set, backed by a 30-day risk-free guarantee"
+found: 2026-11-21

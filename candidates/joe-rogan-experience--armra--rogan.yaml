@@ -1,0 +1,13 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: joe-rogan-experience
+podcast_name: The Joe Rogan Experience
+language: en
+rss: https://feeds.megaphone.fm/GLT1412515089
+code: Rogan
+brand_guess: armra
+discount_guess: 30 %
+source: https://feeds.megaphone.fm/GLT1412515089
+episode: "JRE MMA Show #189 with Tommy McMililen"
+published: 2026-11-17
+context: "ARMRA - 30% off with code: Rogan"
+found: 2026-11-21

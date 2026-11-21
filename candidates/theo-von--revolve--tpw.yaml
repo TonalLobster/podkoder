@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: theo-von
+podcast_name: This Past Weekend w/ Theo Von
+language: en
+rss: https://feeds.megaphone.fm/thispastweekend
+code: TPW
+brand_guess: revolve
+discount_guess: 15 %
+url_guess: https://REVOLVE.com/TPW
+source: https://art19.com/shows/this-past-weekend
+episode: "#696 - Katt Williams"
+published: 2026-11-17
+context: "Revolve: Shop athttp://REVOLVE.com/TPW (http://revolve.com/TPW) and use code TPW for 15% off your entire order. #REVOLVEpartner"
+found: 2026-11-21

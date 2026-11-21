@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: theglacierapp
+discount_guess: 20 %
+url_guess: https://theglacierapp.com/megyn
+source: https://www.siriusxm.com
+episode: The Campaign Against Russell Brand is Gathering Steam, From New Netflix Hit Job, to Censorship Calls  |  Ep. 1442
+published: 2026-11-16
+context: "Glacier Security App: Privacy isn't paranoia. It's protection. Get 20% off your first 3 months at https://theglacierapp.com/megyn and use code MEGYN at checkout."
+found: 2026-11-21
