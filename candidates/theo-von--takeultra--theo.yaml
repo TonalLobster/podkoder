@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: theo-von
+podcast_name: This Past Weekend w/ Theo Von
+language: en
+rss: https://feeds.megaphone.fm/thispastweekend
+code: THEO
+brand_guess: takeultra
+discount_guess: 15 %
+url_guess: https://takeultra.com
+source: https://art19.com/shows/this-past-weekend
+episode: "#696 - Katt Williams"
+published: 2026-11-17
+context: "Ultra: Don’t sleep on @ultrapouches. New customers get 15% Off with code THEO athttp://takeultra.com (http://takeultra.com/)! #UltraPouches #ad"
+found: 2026-11-21

@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: BFCM30
+brand_guess: takelean
+discount_guess: 30 %
+url_guess: https://takelean.com
+source: https://www.siriusxm.com
+episode: "Trump's Summit with Xi and Putin, Inside Nvidia, Northwestern Students Stop Attack: AM Update 11/20"
+published: 2026-11-20
+context: "Lean: Go to https://takelean.com (https://takelean.com/) and use code BFCM30 for 30% OFF."
+found: 2026-11-21

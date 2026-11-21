@@ -1,0 +1,11 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: suhonen-moter
+podcast_name: Suhonen möter
+language: sv
+rss: https://anchor.fm/s/11004bc4c/podcast/rss
+code: RUDA
+source: https://podcasters.spotify.com/pod/show/podd-katalys/episodes/Klas-stergren-e3si8gn
+episode: Klas Östergren
+published: 2026-11-21
+context: "Kod: RUDA"
+found: 2026-11-21

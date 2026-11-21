@@ -1,0 +1,14 @@
+# Förslag från rss-scan. Granska med `npm run review`.
+podcast: megyn-kelly-show
+podcast_name: The Megyn Kelly Show
+language: en
+rss: https://feeds.simplecast.com/RV1USAfC
+code: MEGYN
+brand_guess: beekeepersnaturals
+discount_guess: 30 %
+url_guess: https://beekeepersnaturals.com/MEGYN
+source: https://www.siriusxm.com
+episode: Meghan Markle's Dad Ruled Competent, Scientist Wins Case, and Clavicular Charged, with Geragos, Merchant, and Frei  |  Ep. 1446
+published: 2026-11-20
+context: "Beekeeper’s Naturals: Beekeeper’s Naturals is giving my listeners EXCLUSIVE EARLY ACCESS to their Black Friday Sale! Go to https://beekeepersnaturals.com/MEGYN or enter code MEGYN to get 30% off your order."
+found: 2026-11-21
